@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gig Details | Admin Panel</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/admin-gigView.css">
+    <link rel="stylesheet" href="assets/css/notification.css">
+</head>
+<body onload="loadData();">
+    <div class="gig-container">
+        <div class="gig-card">
+            <!-- Gig Header -->
+            <div class="gig-header">
+                <a href="#" class="back-button" onclick="goBack()">
+                    <i class="fas fa-arrow-left"></i> Back to Gigs
+                </a>
+                
+                <div class="status-badge" id="status-badge">
+                    <i class="fas fa-circle me-1"></i>Active
+                </div>
+
+                <h2 class="text-center mb-0">Gig Details</h2>
+            </div>
+
+            <!-- Gig Body -->
+            <div class="gig-body">
+                <!-- Image Gallery -->
+                <div class="image-gallery">
+                    <div class="main-image-container">
+                        <img src="https://via.placeholder.com/800x400/667eea/ffffff?text=Web+Design+Main" 
+                             class="main-image" id="mainImage" alt="Web Design">
+                    </div>
+                    
+                    <div class="thumbnails-container">
+                        <img src="https://via.placeholder.com/120x80/667eea/ffffff?text=Image+1" 
+                             class="thumbnail active"  alt="Thumbnail 1" id="thumbnail-image1">
+                        <img src="https://via.placeholder.com/120x80/28a745/ffffff?text=Image+2" 
+                             class="thumbnail"  alt="Thumbnail 2" id="thumbnail-image2">
+                        <img src="https://via.placeholder.com/120x80/dc3545/ffffff?text=Image+3" 
+                             class="thumbnail"  alt="Thumbnail 3" id="thumbnail-image3">
+                    </div>
+                </div>
+
+                <!-- Gig Details Grid -->
+                <div class="gig-details">
+                    <!-- Gig Information -->
+                    <div class="gig-info">
+                        <h3 class="gig-title" id="title">Professional Web Design & Development</h3>
+                        
+                        <div class="gig-tags">
+                            <span class="tag-badge">Web Design</span>
+                            <span class="tag-badge">HTML/CSS</span>
+                            <span class="tag-badge" id="tag">JavaScript</span>
+                            <span class="tag-badge">Responsive</span>
+                            <span class="tag-badge">UI/UX</span>
+                        </div>
+
+                        <div class="gig-price">
+                            <i class="me-2"></i>Rs.<span id="price">299</span>
+                        </div>
+
+                        <div class="gig-description" id="description">
+                            Professional web design and development services with modern, responsive layouts. 
+                            I create stunning websites that are optimized for all devices and search engines. 
+                            Services include custom design, development, SEO optimization, and ongoing maintenance.
+                            <br><br>
+                            What you'll get:
+                            • Fully responsive website design
+                            • Custom HTML/CSS/JavaScript development
+                            • SEO optimization
+                            • Mobile-friendly design
+                            • Fast loading times
+                            • Cross-browser compatibility
+                            • 3 months of free support
+                        </div>
+
+                        <div class="delivery-info">
+                            <i class="fas fa-clock"></i>
+                            <span>Delivery Time: <span id="days">7-10</span> days</span>
+                        </div>
+                    </div>
+
+                    <!-- Owner Information -->
+                    <div class="owner-section">
+                        <img src="https://via.placeholder.com/80x80/667eea/ffffff?text=JS" class="owner-image" alt="John Smith" id="user-profile">
+                        <h4 class="owner-name" id="user-name">John Smith</h4>
+                        <p class="owner-role" id="role">Web Developer</p>
+                        
+                        <div class="mt-3">
+                            <div class="d-flex align-items-center justify-content-center mb-2">
+                                <div class="stars me-2">
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star-half-alt text-warning"></i>
+                                </div>
+                                <span class="text-muted">4.5 (127 reviews)</span>
+                            </div>
+                            <small class="text-muted">Member since Jan 2025</small>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="action-buttons">
+                    <button class="btn btn-approve" onclick="approveGig()">
+                        <i class="fas fa-check me-2"></i>Approve Gig
+                    </button>
+                    <button class="btn btn-deactivate" onclick="deactivateGig()">
+                        <i class="fas fa-times me-2"></i>Deactivate Gig
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/js/notification.js"></script>
+    <script src="assets/js/admin-gigView.js"></script>
+</body>
+</html> 

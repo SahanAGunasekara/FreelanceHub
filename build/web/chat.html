@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat | FreelanceHub</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/chat.css">
+    <link rel="stylesheet" href="assets/css/notification.css">
+</head>
+<body onload="loadData();">
+    <div class="chat-container">
+        <!-- Chat Header -->
+        <div class="chat-header">
+            <div class="user-info">
+                <div class="user-avatar">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="user-details">
+                    <h6 id="frname">John Smith (Freelancer)</h6>
+                    <small id="frCategory">Web Developer • Online</small>
+                    <h6 id="frid"></h6>
+                </div>
+            </div>
+        </div>
+
+        <!-- Messages Area -->
+        <div class="chat-messages" id="chatMessages">
+            <!-- Sample messages -->
+            <div class="message received">
+                <div class="message-bubble">
+                    Hi! I've reviewed your project requirements. I can definitely help you build that website. What's your timeline?
+                </div>
+                <div class="message-time">10:30 AM</div>
+            </div>
+
+            <div class="message sent">
+                <div class="message-bubble">
+                    Great! I need it done within 2 weeks. What's your rate?
+                </div>
+                <div class="message-time">10:32 AM</div>
+            </div>
+
+            <div class="message received">
+                <div class="message-bubble">
+                    For a complete website with the features you mentioned, my rate is $800. This includes responsive design, contact forms, and SEO optimization.
+                </div>
+                <div class="message-time">10:35 AM</div>
+            </div>
+
+            <div class="message sent">
+                <div class="message-bubble">
+                    That sounds reasonable. Can you start this weekend?
+                </div>
+                <div class="message-time">10:37 AM</div>
+            </div>
+
+            <div class="message received">
+                <div class="message-bubble">
+                    Absolutely! I'll start on Saturday and send you updates every 3 days. Should we proceed with the payment?
+                </div>
+                <div class="message-time">10:40 AM</div>
+            </div>
+
+            <!-- Typing indicator -->
+            <div class="typing-indicator" id="typingIndicator">
+                <div class="typing-dots">
+                    <div class="typing-dot"></div>
+                    <div class="typing-dot"></div>
+                    <div class="typing-dot"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Input Area -->
+        <div class="chat-input-container">
+            <div class="input-group">
+                <input type="text" class="form-control" id="messageInput" placeholder="Type your message..." maxlength="500">
+                <button class="btn btn-send" id="sendButton" onclick="sendMsg();">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Payment Section (Customer only) -->
+        <div class="payment-section" id="paymentSection">
+            <button class="btn btn-payment" id="payment-button">
+                <i class="fas fa-credit-card me-2"></i>
+                Proceed to Payment
+            </button>
+        </div>
+    </div>
+
+    <script src="assets/js/chat.js"></script>
+    <script src="assets/js/notification.js"></script>
+    <script type="text/javascript" src="https://www.payhere.lk/lib/payhere.js"></script>
+</body>
+</html> 

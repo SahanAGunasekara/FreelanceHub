@@ -1,0 +1,24 @@
+:root {
+            --primary-green: #1dbf73;
+            --secondary-green: #19a463;
+            --border-color: #e4e5e7;
+            --text-dark: #404145;
+        }
+        body { background: #fafafa; color: var(--text-dark); font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        .navbar-brand { font-weight: 700; color: var(--primary-green) !important; }
+        .page-header {
+            background: linear-gradient(135deg, var(--primary-green), var(--secondary-green));
+            color: #fff;
+            padding: 2.5rem 0;
+            margin-bottom: 2rem;
+        }
+        .card { border: none; border-radius: 12px; box-shadow: 0 2px 18px rgba(0,0,0,0.08); }
+        .card-header { background: #fff; border-bottom: 1px solid var(--border-color); border-radius: 12px 12px 0 0 !important; font-weight: 600; }
+        .form-control, .form-select { border: 2px solid var(--border-color); border-radius: 8px; padding: .75rem; }
+        .form-control:focus, .form-select:focus { border-color: var(--primary-green); box-shadow: 0 0 0 .2rem rgba(29,191,115,.2); }
+        .btn-primary { background: var(--primary-green); border-color: var(--primary-green); border-radius: 8px; padding: .75rem 1.5rem; font-weight: 600; }
+        .btn-primary:hover { background: var(--secondary-green); border-color: var(--secondary-green); }
+        .btn-outline-primary { color: var(--primary-green); border-color: var(--primary-green); border-radius: 8px; }
+        .edu-pair + .edu-pair { margin-top: 1rem; }
+        .required::after { content: " *"; color: #dc3545; }
+

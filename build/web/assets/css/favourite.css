@@ -1,0 +1,19 @@
+.card-img-top {
+  height: 180px;
+  object-fit: cover;
+}
+
+.remove-btn {
+  border: none;
+  background: none;
+  color: red;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.remove-btn:hover {
+  color: darkred;
+}
+
+

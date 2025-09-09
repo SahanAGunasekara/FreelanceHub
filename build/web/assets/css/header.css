@@ -1,0 +1,111 @@
+
+
+        .site-header {
+            background: #ffffff;
+            border-bottom: 1px solid #e9ecef;
+            position: sticky;
+            top: 0;
+            z-index: 1030;
+        }
+
+        .header-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+            padding: 12px 0;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        .brand .logo {
+            font-size: 28px;
+            font-weight: 800;
+            color:#1E89B3; /* Fiverr green */
+            letter-spacing: 0.2px;
+            margin-right: 4px;
+        }
+
+        .search-form {
+            flex: 1 1 auto;
+            max-width: 720px;
+        }
+
+        .search-input.form-control {
+            border: 1px solid #e0e0e0;
+            border-right: 0;
+            border-radius: 999px 0 0 999px;
+            padding: 12px 16px;
+            height: 44px;
+            font-size: 14px;
+        }
+
+        .btn-search {
+            border-radius: 0 999px 999px 0;
+            background: #2d2d2d; /* dark gray button */
+            color: #ffffff;
+            border: 1px solid #2d2d2d;
+            height: 44px;
+            width: 52px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-search:hover {
+            background: #1f1f1f;
+            border-color: #1f1f1f;
+            color: #fff;
+        }
+
+        .actions {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .action-icon {
+            color: #4a4a4a;
+            font-size: 18px;
+            text-decoration: none;
+        }
+
+        .action-icon:hover {
+            color: #000000;
+        }
+
+        .orders-toggle, .profile-toggle {
+            color: #2b2b2b;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .orders-toggle:hover, .profile-toggle:hover {
+            color: #000000;
+        }
+
+        .profile-img {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #e9ecef;
+        }
+
+        .caret {
+            color: #6c757d;
+            font-size: 12px;
+        }
+
+        /* Responsive tweaks */
+        @media (max-width: 992px) {
+            .search-form { max-width: 520px; }
+        }
+        @media (max-width: 768px) {
+            .search-form { display: none; }
+        }
+

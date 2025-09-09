@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Freelancer Profile | Admin Panel</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/notification.css">
+    <link rel="stylesheet" href="assets/css/freelancer-profile.css">
+</head>
+<body onload="loadData();">
+    <div class="profile-container">
+        <div class="profile-card">
+            <!-- Profile Header -->
+            <div class="profile-header">
+                <a href="#" class="back-button" onclick="goBack()">
+                    <i class="fas fa-arrow-left"></i> Back
+                </a>
+                
+                <div class="status-indicator status-active" id="status-indicator">
+                    <i class="fas fa-circle me-1"></i><span id="status">Active</span>
+                </div>
+
+                <img src="https://via.placeholder.com/120x120/667eea/ffffff?text=JS" class="profile-image" alt="John Smith" id="profile">
+                <h2 class="profile-name" id="name">John Smith</h2>
+                <p class="profile-id" id="profile-id">User ID: FL-2024-001</p>
+            </div>
+
+            <!-- Profile Body -->
+            <div class="profile-body">
+                <!-- Basic Information -->
+                <div class="info-grid">
+                    <div class="info-item">
+                        <h6><i class="fas fa-map-marker-alt"></i> Country</h6>
+                        <p id="country">United States</p>
+                    </div>
+                    <div class="info-item">
+                        <h6><i class="fas fa-calendar-alt"></i> Joined Date</h6>
+                        <p id="join">January 15, 2024</p>
+                    </div>
+                    <div class="info-item">
+                        <h6><i class="fas fa-star"></i> Rating</h6>
+                        <div class="rating-container">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <span class="rating-score"><span id="rate">4.5</span>/5</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Skills Section -->
+                <div class="info-section">
+                    <h5><i class="fas fa-tools"></i> Skills</h5>
+                    <div class="skills-container">
+                        <span class="skill-badge" id="skill">JavaScript</span>
+                        <span class="skill-badge">React</span>
+                        <span class="skill-badge">Node.js</span>
+                        <span class="skill-badge">Python</span>
+                        <span class="skill-badge">Django</span>
+                        <span class="skill-badge">MongoDB</span>
+                        <span class="skill-badge">AWS</span>
+                        <span class="skill-badge">Docker</span>
+                    </div>
+                </div>
+
+                <!-- Links Section -->
+                <div class="info-section">
+                    <h5><i class="fas fa-link"></i> Professional Links</h5>
+                    <div class="link-item">
+                        <i class="fab fa-linkedin"></i>
+                        <a href="https://linkedin.com/in/johnsmith" target="_blank" id="linkedIn">linkedin.com/in/johnsmith</a>
+                    </div>
+                    <div class="link-item">
+                        <i class="fas fa-globe"></i>
+                        <a href="https://johnsmith.dev" target="_blank" id="web">johnsmith.dev</a>
+                    </div>
+                    <div class="link-item">
+                        <i class="fab fa-github"></i>
+                        <a href="https://github.com/johnsmith" target="_blank">github.com/johnsmith</a>
+                    </div>
+                </div>
+
+                <!-- Bio Section -->
+                <div class="info-section">
+                    <h5><i class="fas fa-user"></i> About</h5>
+                    <div class="bio-text" id="bio">
+                        Experienced full-stack developer with over 5 years of expertise in modern web technologies. 
+                        Passionate about creating scalable, user-friendly applications and solving complex technical challenges. 
+                        Specialized in JavaScript frameworks, cloud deployment, and API development. 
+                        Committed to delivering high-quality code and exceptional user experiences.
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="action-buttons">
+                    <button class="btn btn-activate" id="activateFreelancer">
+                        <i class="fas fa-check me-2"></i>Activate
+                    </button>
+                    <button class="btn btn-deactivate" id="deactivateFreelancer">
+                        <i class="fas fa-times me-2"></i>Deactivate
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/js/notification.js"></script>
+    <script src="assets/js/freelancer-profile.js"></script>
+</body>
+</html> 

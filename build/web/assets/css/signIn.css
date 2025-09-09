@@ -1,0 +1,78 @@
+body {
+            background-color: #f8f9fa;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .login-container {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+        .logo {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+        .logo h1 {
+            color: #2d3436;
+            font-size: 2rem;
+            font-weight: 700;
+        }
+        .form-control {
+            border-radius: 8px;
+            padding: 0.75rem 1rem;
+            border: 1px solid #dfe6e9;
+        }
+        .form-control:focus {
+            box-shadow: 0 0 0 0.2rem rgba(45, 52, 54, 0.1);
+            border-color: #2d3436;
+        }
+        .btn-primary {
+            background-color: #2d3436;
+            border: none;
+            border-radius: 8px;
+            padding: 0.75rem;
+            font-weight: 600;
+        }
+        .btn-primary:hover {
+            background-color: #1e272e;
+        }
+        .social-login {
+            border-top: 1px solid #dfe6e9;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+        }
+        .social-btn {
+            width: 100%;
+            margin-bottom: 0.75rem;
+            padding: 0.75rem;
+            border-radius: 8px;
+            font-weight: 500;
+        }
+        .btn-google {
+            background-color: #fff;
+            border: 1px solid #dfe6e9;
+            color: #2d3436;
+        }
+        .btn-facebook {
+            background-color: #1877f2;
+            border: none;
+            color: white;
+        }
+        .forgot-password {
+            color: #2d3436;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+        .forgot-password:hover {
+            text-decoration: underline;
+        }
+        .signup-link {
+            text-align: center;
+            margin-top: 1rem;
+        }
+

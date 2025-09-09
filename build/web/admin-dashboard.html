@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | FreelanceHub</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/notification.css">
+    <link rel="stylesheet" href="assets/css/admin-dashboard.css">
+</head>
+<body onload="loadUserData();">
+    <!-- Mobile Toggle Button -->
+    <button class="mobile-toggle" onclick="toggleSidebar()">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <div class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <h4><i class="fas fa-shield-alt me-2"></i>Admin Panel</h4>
+                <p>FreelanceHub Management</p>
+            </div>
+            
+            <nav class="nav-menu">
+                <div class="nav-item">
+                    <a href="#" class="nav-link active" data-tab="users">
+                        <i class="fas fa-users"></i>
+                        Manage Users
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a href="#" class="nav-link" data-tab="freelancers">
+                        <i class="fas fa-user-tie"></i>
+                        Manage Freelancers
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a href="#" class="nav-link" data-tab="gigs">
+                        <i class="fas fa-briefcase"></i>
+                        Manage Gigs
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a href="#" class="nav-link" data-tab="others">
+                        <i class="fas fa-cog"></i>
+                        Others
+                    </a>
+                </div>
+            </nav>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Content Header -->
+            <div class="content-header">
+                <h2 id="pageTitle">Manage Users</h2>
+            </div>
+
+            <!-- Content Body -->
+            <div class="content-body">
+                <!-- Users Tab -->
+                <div id="users-tab" class="tab-content active">
+                    <div class="table-container">
+                        <button class="btn btn-print" onclick="printTable()">
+                            <i class="fas fa-print me-2"></i>Print Table
+                        </button>
+                        
+                        <div class="table-responsive">
+                            <table class="table table-hover" id="printable">
+                                <thead>
+                                    <tr>
+                                        <th>Profile Image</th>
+                                        <th>Username</th>
+                                        <th>Email</th>
+                                        <th>Role</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="table-body">
+                                    <tr>
+                                        <td><img src="https://via.placeholder.com/40x40/667eea/ffffff?text=J" class="profile-img" alt="John"></td>
+                                        <td>john_doe</td>
+                                        <td>john@example.com</td>
+                                        <td><span class="badge bg-primary">Customer</span></td>
+                                        <td>
+                                            <button class="btn btn-sm btn-outline-primary">Edit</button>
+                                            <button class="btn btn-sm btn-outline-danger">Delete</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><img src="https://via.placeholder.com/40x40/28a745/ffffff?text=S" class="profile-img" alt="Sarah"></td>
+                                        <td>sarah_smith</td>
+                                        <td>sarah@example.com</td>
+                                        <td><span class="badge bg-success">Freelancer</span></td>
+                                        <td>
+                                            <button class="btn btn-sm btn-outline-primary">Edit</button>
+                                            <button class="btn btn-sm btn-outline-danger">Delete</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><img src="https://via.placeholder.com/40x40/dc3545/ffffff?text=M" class="profile-img" alt="Mike"></td>
+                                        <td>mike_wilson</td>
+                                        <td>mike@example.com</td>
+                                        <td><span class="badge bg-warning">Admin</span></td>
+                                        <td>
+                                            <button class="btn btn-sm btn-outline-primary">Edit</button>
+                                            <button class="btn btn-sm btn-outline-danger">Delete</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><img src="https://via.placeholder.com/40x40/6f42c1/ffffff?text=E" class="profile-img" alt="Emma"></td>
+                                        <td>emma_davis</td>
+                                        <td>emma@example.com</td>
+                                        <td><span class="badge bg-primary">Customer</span></td>
+                                        <td>
+                                            <button class="btn btn-sm btn-outline-primary">Edit</button>
+                                            <button class="btn btn-sm btn-outline-danger">Delete</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Freelancers Tab -->
+                <div id="freelancers-tab" class="tab-content">
+                    <div class="card-grid" id="card-container">
+                        <div class="freelancer-card">
+                            <div class="card-header">
+                                <img src="https://via.placeholder.com/50x50/667eea/ffffff?text=J" class="card-profile-img" alt="John">
+                                <div class="card-info">
+                                    <h5>John Smith</h5>
+                                    <p>Web Developer</p>
+                                    <small>Joined: Jan 15, 2024</small>
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <button class="btn btn-sm btn-outline-primary" id="view-profile">View Profile</button>
+                                <button class="btn btn-sm btn-outline-success">Approve</button>
+                            </div>
+                        </div>
+
+                        <div class="freelancer-card">
+                            <div class="card-header">
+                                <img src="https://via.placeholder.com/50x50/28a745/ffffff?text=S" class="card-profile-img" alt="Sarah">
+                                <div class="card-info">
+                                    <h5>Sarah Johnson</h5>
+                                    <p>Graphic Designer</p>
+                                    <small>Joined: Feb 3, 2024</small>
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <button class="btn btn-sm btn-outline-primary">View Profile</button>
+                                <button class="btn btn-sm btn-outline-success">Approve</button>
+                            </div>
+                        </div>
+
+                        <div class="freelancer-card">
+                            <div class="card-header">
+                                <img src="https://via.placeholder.com/50x50/dc3545/ffffff?text=M" class="card-profile-img" alt="Mike">
+                                <div class="card-info">
+                                    <h5>Mike Wilson</h5>
+                                    <p>Mobile Developer</p>
+                                    <small>Joined: Mar 10, 2024</small>
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <button class="btn btn-sm btn-outline-primary">View Profile</button>
+                                <button class="btn btn-sm btn-outline-success">Approve</button>
+                            </div>
+                        </div>
+
+                        <div class="freelancer-card">
+                            <div class="card-header">
+                                <img src="https://via.placeholder.com/50x50/6f42c1/ffffff?text=E" class="card-profile-img" alt="Emma">
+                                <div class="card-info">
+                                    <h5>Emma Davis</h5>
+                                    <p>UI/UX Designer</p>
+                                    <small>Joined: Apr 5, 2024</small>
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <button class="btn btn-sm btn-outline-primary">View Profile</button>
+                                <button class="btn btn-sm btn-outline-success">Approve</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gigs Tab -->
+                <div id="gigs-tab" class="tab-content">
+                    <div class="card-grid" id="gig-container">
+                        <div class="gig-card">
+                            <img src="https://via.placeholder.com/300x150/667eea/ffffff?text=Web+Design" class="gig-image" alt="Web Design">
+                            <h5>Professional Web Design</h5>
+                            <p>Create stunning, responsive websites with modern design principles and SEO optimization.</p>
+                            <div class="d-flex justify-content-between">
+                                <span class="badge bg-success">Active</span>
+                                <button class="btn btn-sm btn-outline-primary">Edit</button>
+                            </div>
+                        </div>
+
+                        <div class="gig-card">
+                            <img src="https://via.placeholder.com/300x150/28a745/ffffff?text=Logo+Design" class="gig-image" alt="Logo Design">
+                            <h5>Creative Logo Design</h5>
+                            <p>Professional logo design services with multiple concepts and unlimited revisions.</p>
+                            <div class="d-flex justify-content-between">
+                                <span class="badge bg-success">Active</span>
+                                <button class="btn btn-sm btn-outline-primary">Edit</button>
+                            </div>
+                        </div>
+
+                        <div class="gig-card">
+                            <img src="https://via.placeholder.com/300x150/dc3545/ffffff?text=App+Development" class="gig-image" alt="App Development">
+                            <h5>Mobile App Development</h5>
+                            <p>Native and cross-platform mobile app development for iOS and Android platforms.</p>
+                            <div class="d-flex justify-content-between">
+                                <span class="badge bg-warning">Pending</span>
+                                <button class="btn btn-sm btn-outline-primary">Edit</button>
+                            </div>
+                        </div>
+
+                        <div class="gig-card">
+                            <img src="https://via.placeholder.com/300x150/6f42c1/ffffff?text=Content+Writing" class="gig-image" alt="Content Writing">
+                            <h5>Content Writing Services</h5>
+                            <p>High-quality content writing for blogs, websites, and marketing materials.</p>
+                            <div class="d-flex justify-content-between">
+                                <span class="badge bg-success">Active</span>
+                                <button class="btn btn-sm btn-outline-primary">Edit</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Others Tab -->
+                <div id="others-tab" class="tab-content">
+                    <div class="form-section">
+                        <h4>Add New Category</h4>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="categoryName" class="form-label">Category Name</label>
+                                    <input type="text" class="form-control" id="categoryName" placeholder="Enter category name">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="password" class="form-label">Password</label>
+                                    <input type="password" class="form-control" id="password" placeholder="Enter Password">
+                                </div>
+                            </div>
+                        </div>
+                        <button class="btn btn-add" onclick="addCategory()">
+                            <i class="fas fa-plus me-2"></i>Add Category
+                        </button>
+
+                        <hr class="my-4">
+
+                        <h4>System Statistics</h4>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="card text-center">
+                                    <div class="card-body">
+                                        <h5 class="card-title" id="total-users">1,234</h5>
+                                        <p class="card-text">Total Users</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="card text-center">
+                                    <div class="card-body">
+                                        <h5 class="card-title" id="total-freelancers">567</h5>
+                                        <p class="card-text">Freelancers</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="card text-center">
+                                    <div class="card-body">
+                                        <h5 class="card-title" id="active-gigs">890</h5>
+                                        <p class="card-text">Active Gigs</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="card text-center">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Rs.45,678</h5>
+                                        <p class="card-text">Total Revenue</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/js/notification.js"></script>
+    <script src="assets/js/admin-dashboard.js"></script>
+</body>
+</html> 
