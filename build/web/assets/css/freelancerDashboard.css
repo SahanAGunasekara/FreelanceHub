@@ -1,0 +1,327 @@
+:root {
+            --primary-green: #1756df;
+            --secondary-green: #1756df;
+            --light-green: #e8f5e8;
+            --dark-text: #404145;
+            --light-text: #74767e;
+            --border-color: #e4e5e7;
+            --sidebar-width: 250px;
+        }
+
+        body {
+            background-color: #f8f9fa;
+            color: var(--dark-text);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* Sidebar Styles */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            width: var(--sidebar-width);
+            background: white;
+            box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .sidebar-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+            background: linear-gradient(135deg, var(--primary-green), var(--secondary-green));
+            color: white;
+        }
+
+        .sidebar-brand {
+            font-weight: 700;
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .sidebar-user {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .sidebar-user img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 2px solid rgba(255,255,255,0.3);
+        }
+
+        .sidebar-nav {
+            padding: 1rem 0;
+        }
+
+        .nav-item {
+            margin: 0.25rem 0;
+        }
+
+        .nav-link {
+            color: var(--dark-text);
+            padding: 0.75rem 1.5rem;
+            border-radius: 0;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .nav-link:hover {
+            background-color: var(--light-green);
+            color: var(--secondary-green);
+        }
+
+        .nav-link.active {
+            background-color: var(--primary-green);
+            color: white;
+        }
+
+        .nav-link i {
+            width: 20px;
+            text-align: center;
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-left: var(--sidebar-width);
+            min-height: 100vh;
+            transition: all 0.3s ease;
+        }
+
+        .top-navbar {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .content-area {
+            padding: 2rem;
+        }
+
+        /* Stats Cards */
+        .stats-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.08);
+            border: none;
+            transition: transform 0.3s ease;
+        }
+
+        .stats-card:hover {
+            transform: translateY(-2px);
+        }
+
+        .stats-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            color: white;
+        }
+
+        .stats-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-green);
+            margin: 0.5rem 0 0.25rem 0;
+        }
+
+        .stats-label {
+            color: var(--light-text);
+            font-size: 0.875rem;
+            margin: 0;
+        }
+
+        /* Gig Cards */
+        .gig-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.08);
+            border: none;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .gig-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 25px rgba(0,0,0,0.12);
+        }
+
+        .gig-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--dark-text);
+            margin-bottom: 0.5rem;
+        }
+
+        .gig-category {
+            background: var(--light-green);
+            color: var(--secondary-green);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            display: inline-block;
+            margin-bottom: 0.75rem;
+        }
+
+        .status-badge {
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .status-active {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .status-paused {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .status-completed {
+            background: #d1ecf1;
+            color: #0c5460;
+        }
+
+        /* Action Buttons */
+        .btn-action {
+            padding: 0.375rem 0.75rem;
+            border-radius: 6px;
+            font-size: 0.875rem;
+            margin: 0 0.25rem;
+        }
+
+        .btn-edit {
+            background: var(--primary-green);
+            border-color: var(--primary-green);
+            color: white;
+        }
+
+        .btn-edit:hover {
+            background: var(--secondary-green);
+            border-color: var(--secondary-green);
+        }
+
+        .btn-delete {
+            background: #dc3545;
+            border-color: #dc3545;
+            color: white;
+        }
+
+        .btn-delete:hover {
+            background: #c82333;
+            border-color: #c82333;
+        }
+
+        .btn-view {
+            background: #6c757d;
+            border-color: #6c757d;
+            color: white;
+        }
+
+        .btn-view:hover {
+            background: #5a6268;
+            border-color: #5a6268;
+        }
+
+        /* Add Gig Button */
+        .add-gig-btn {
+            background: var(--primary-green);
+            border-color: var(--primary-green);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .add-gig-btn:hover {
+            background: var(--secondary-green);
+            border-color: var(--secondary-green);
+            transform: translateY(-2px);
+        }
+
+        /* Progress Bar */
+        .profile-progress {
+            background: var(--light-green);
+            border-radius: 20px;
+            height: 8px;
+        }
+
+        .profile-progress .progress-bar {
+            background: var(--primary-green);
+            border-radius: 20px;
+        }
+
+        /* Notifications */
+        .notification-item {
+            padding: 0.75rem;
+            border-left: 3px solid var(--primary-green);
+            background: white;
+            margin-bottom: 0.5rem;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .notification-time {
+            font-size: 0.75rem;
+            color: var(--light-text);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-100%);
+            }
+
+            .sidebar.show {
+                transform: translateX(0);
+            }
+
+            .main-content {
+                margin-left: 0;
+            }
+
+            .top-navbar {
+                padding: 1rem;
+            }
+
+            .content-area {
+                padding: 1rem;
+            }
+
+            .stats-card {
+                margin-bottom: 1rem;
+            }
+        }
+
+        /* Sidebar Toggle */
+        .sidebar-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.25rem;
+            color: var(--dark-text);
+        }
+
+        @media (max-width: 768px) {
+            .sidebar-toggle {
+                display: block;
+            }
+        }

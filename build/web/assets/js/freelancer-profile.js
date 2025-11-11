@@ -85,7 +85,7 @@ async function loadData(){
                 document.getElementById("country").innerHTML=json.freelancer.country.name;
                 document.getElementById("join").innerHTML=json.userAdv.joined;
                 document.getElementById("rate").innerHTML=json.freelancer.rating;
-                document.getElementById("skill").innerHTML=json.freelancer.skill;
+                document.getElementById("skill").innerHTML=json.freelancer.title;
                 document.getElementById("linkedIn").innerHTML=json.freelancer.linkedIn;
                 document.getElementById("web").innerHTML=json.freelancer.portfolio;
                 document.getElementById("bio").innerHTML=json.freelancer.description;

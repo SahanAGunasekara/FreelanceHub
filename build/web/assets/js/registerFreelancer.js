@@ -28,44 +28,98 @@
             });
         })();
 
-        // Simple Form Handling (front-end demo)
-        document.getElementById('freelancerForm').addEventListener('submit', function(e) {
-            e.preventDefault();
+        
 
-            const title = document.getElementById('title');
-            const skills = document.getElementById('skills');
-            const country = document.getElementById('country');
+async function loadData(){
+    
+    const response = await fetch("loaduserProfile");
+    
+    if(response.ok){
+        const json = await response.json();
+        //console.log(json);
+        
+        const cSelector = document.getElementById("country");
+        json.countryList.forEach(country=>{
+                 let option = document.createElement("option");
+                 option.innerHTML=country.name;
+                 option.value=country.id;
+                 cSelector.appendChild(option);
+             });
+    }else{
+        console.log(error);
+    }
+}
 
-            // Basic required validation
-            [title, skills, country].forEach(el => {
-                if (!el.value || !el.value.trim()) {
-                    el.classList.add('is-invalid');
-                } else {
-                    el.classList.remove('is-invalid');
-                }
+async function registerFreelancer(){
+    const popup = new Notification();
+    
+    const title = document.getElementById("title").value;
+    const availability = document.getElementById("availability").checked;
+    const skills = document.getElementById("skills").value;
+    const linkedIn_url = document.getElementById("linkedin").value;
+    const portfolio_url = document.getElementById("portfolio").value;
+    const countryId = document.getElementById("country").value;
+    const description = document.getElementById("description").value;
+    const porfolio = document.getElementById("portfolioPdf").files[0];
+    
+    const educationData = [];
+    const rows = document.querySelectorAll(".edu-pair");
+    
+    
+    rows.forEach(row => {
+        const index = row.getAttribute("data-index");
+        const qualification = document.getElementById(`edu-${index}-qualification`).value.trim();
+        const level = document.getElementById(`edu-${index}-level`).value;
+
+        if (qualification !== "" && level !== "") {
+            educationData.push({
+                qualification: qualification,
+                level: level
             });
-            if ([title, skills, country].some(el => el.classList.contains('is-invalid'))) {
-                alert('Please complete required fields.');
-                return;
-            }
-
-            // Collect data for demo
-            const data = {
-                title: title.value.trim(),
-                skills: skills.value.trim(),
-                available: document.getElementById('availability').checked,
-                linkedin: document.getElementById('linkedin').value.trim(),
-                portfolio: document.getElementById('portfolio').value.trim(),
-                description: document.getElementById('description').value.trim(),
-                country: country.value,
-                education: Array.from(document.querySelectorAll('.edu-pair')).map(pair => ({
-                    qualification: pair.querySelector('input')?.value?.trim() || '',
-                    level: pair.querySelector('select')?.value || ''
-                })),
-                hasPdf: document.getElementById('educationPdf').files.length > 0
-            };
-
-            console.log('Submitting freelancer registration:', data);
-            alert('Registration submitted! (Demo)');
-            // Optionally reset: this.reset();
-        });
+//            console.log(qualification);
+//            console.log(level);
+            
+        }
+    });
+    
+    const qualificationData = JSON.stringify(educationData);
+    
+    
+    const form = new FormData();
+    form.append("title",title);
+    form.append("availability",availability);
+    form.append("skills",skills);
+    form.append("linkedInURL",linkedIn_url);
+    form.append("portfolioURL",portfolio_url);
+    form.append("country",countryId);
+    form.append("description",description);
+    form.append("portfolioPDF",porfolio);
+    form.append("qualifications",qualificationData);
+    
+    const response  = await fetch("saveFreelancer",{
+        method:"POST",
+        body:form
+    });
+    
+    if(response.ok){
+        const json = await response.json();
+        if(json.status){
+            console.log("Freelancer Saved succesfully");
+            popup.success({
+                    message:"Freelancer Saved succesfully"
+                });
+            //console.log(json.message);
+        }else{
+            console.log(json.message);
+            popup.error({
+                message:json.message
+            });
+        }
+    }else{
+        console.log("Something went wrong");
+        popup.error({
+                message:"Something went wrong"
+            });
+    }
+    
+}

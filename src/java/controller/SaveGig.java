@@ -11,6 +11,7 @@ import hibernate.User;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.Serializable;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 import javax.servlet.ServletException;
@@ -28,101 +29,101 @@ import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 
 @MultipartConfig
-@WebServlet(name = "SaveGig", urlPatterns = {"/SaveGig"})
-public class SaveGig extends HttpServlet {
+@WebServlet(name = "saveGig", urlPatterns = {"/saveGig"})
+public class saveGig extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String title = request.getParameter("gigTitle");
-        String category = request.getParameter("gigCategory");
-        String tag = request.getParameter("gigTag");
-        String description = request.getParameter("gigDescription");
-        String price = request.getParameter("gigPrice");
-        String delivery = request.getParameter("gigDelivery");
 
-        Part img1 = request.getPart("image1");
-        Part img2 = request.getPart("image2");
-        Part img3 = request.getPart("image3");
-
-        SessionFactory sf = HibernateUtil.getSessionFactory();
-        Session s = sf.openSession();
+        String gigTitle = request.getParameter("title");
+        String price = request.getParameter("price");
+        String deliveryTime = request.getParameter("delivery");
+        String categoryId = request.getParameter("categoryId");
+        String description = request.getParameter("description");
+        String[] tags = request.getParameterValues("tags");
+        Part Image1 = request.getPart("image1");
+        Part Image2 = request.getPart("image2");
+        Part Image3 = request.getPart("image3");
 
         JsonObject responseObject = new JsonObject();
         responseObject.addProperty("status", false);
 
-        if (title.isEmpty()) {
-            responseObject.addProperty("message", "Gig Title Cannot be empty");
-        } else if (!Util.isInteger(category)) {
-            responseObject.addProperty("message", "Please select valid Category");
-        } else if (tag.isEmpty()) {
-            responseObject.addProperty("message", "Please Enter tags");
+        if (gigTitle.isEmpty()) {
+            responseObject.addProperty("message", "Please enter Gig Title");
+        } else if (price.isEmpty()) {
+            responseObject.addProperty("message", "please enter price");
+        } else if (deliveryTime.isEmpty()) {
+            responseObject.addProperty("message", "please select Delivery Time");
+        } else if (!Util.isInteger(categoryId)) {
+            responseObject.addProperty("message", "please select valid Gig Category");
         } else if (description.isEmpty()) {
-            responseObject.addProperty("message", "Please Enter Description");
-        } else if (!Util.isDouble(price)) {
-            responseObject.addProperty("message", "Please Enter Valid price");
-        } else if (!Util.isInteger(delivery)) {
-            responseObject.addProperty("message", "Please Enter Valid delivery time");
-        } else if (img1.getSubmittedFileName() == null) {
-            responseObject.addProperty("message", "Please Add image 1");
-        } else if (img2.getSubmittedFileName() == null) {
-            responseObject.addProperty("message", "Please Add image 2");
-        } else if (img3.getSubmittedFileName() == null) {
-            responseObject.addProperty("message", "Please Add image 3");
+            responseObject.addProperty("message", "please enter gig description");
+        } else if (tags.length <= 0) {
+            responseObject.addProperty("message", "please add tags to your Gig");
+        } else if (Image1.getSubmittedFileName() == null) {
+            responseObject.addProperty("message", "please add Image 1");
+        } else if (Image2.getSubmittedFileName() == null) {
+            responseObject.addProperty("message", "please add Image 2");
+        } else if (Image3.getSubmittedFileName() == null) {
+            responseObject.addProperty("message", "please add Image 3");
         } else {
-            Category categ = (Category) s.load(Category.class, Integer.valueOf(category));
-            if (categ == null) {
-                responseObject.addProperty("message", "Please select category from the list");
+            Session s = HibernateUtil.getSessionFactory().openSession();
+            Category category = (Category) s.load(Category.class, Integer.parseInt(categoryId));
+
+            if (category == null) {
+                responseObject.addProperty("message", "please select category");
             } else {
-                HttpSession ses = request.getSession();
-                User u = (User) ses.getAttribute("user");
-                if (u == null) {
-                    responseObject.addProperty("message", "Please SignIn");
-                } else {
+                User u = (User) request.getSession().getAttribute("user");
+
+                if (u != null) {
                     Criteria c = s.createCriteria(Freelancer.class);
                     c.add(Restrictions.eq("user", u));
-                    Freelancer freelancer = (Freelancer) c.list().get(0);
+                    Freelancer freelancer = (Freelancer) c.uniqueResult();
 
-                    if (freelancer == null) {
-                        responseObject.addProperty("message", "Please register as freelancer first");
-                    } else {
-                        if (!freelancer.getAvailability().equals("Active")) {
-                            responseObject.addProperty("message", "Still you have not approved freelancer");
-                        } else {
-                            GigStatus status = (GigStatus) s.load(GigStatus.class, 1);
+                    GigStatus status = (GigStatus) s.load(GigStatus.class, 1);
 
-                            Gig gig = new Gig();
-                            gig.setTitle(title);
-                            gig.setPrice(Double.parseDouble(price));
-                            gig.setDescription(description);
-                            gig.setTags(tag);
-                            gig.setDelivery_time(Integer.parseInt(delivery));
-                            gig.setFreelancer(freelancer);
-                            gig.setCategory(categ);
-                            gig.setStatus(status);
+                    String mainTag = "";
 
-                            int id = (int) s.save(gig);
-                            s.beginTransaction().commit();
-                            s.close();
+                    for (String gigTag : tags) {
 
-                            String appPath = getServletContext().getRealPath("");
-                            String newPath = appPath.replace("build\\web", "web\\Gig-Images");
-
-                            File f = new File(newPath, String.valueOf(id));
-                            f.mkdir();
-
-                            File file1 = new File(f, "image1.png");
-                            Files.copy(img1.getInputStream(), file1.toPath(), StandardCopyOption.REPLACE_EXISTING);
-
-                            File file2 = new File(f, "image2.png");
-                            Files.copy(img2.getInputStream(), file2.toPath(), StandardCopyOption.REPLACE_EXISTING);
-
-                            File file3 = new File(f, "image3.png");
-                            Files.copy(img3.getInputStream(), file3.toPath(), StandardCopyOption.REPLACE_EXISTING);
-                            
-                            responseObject.addProperty("status", true);
-                        }
+                        mainTag += gigTag+",";
                     }
+
+                    Gig gig = new Gig();
+                    gig.setTitle(gigTitle);
+                    gig.setPrice(Integer.parseInt(price));
+                    gig.setDescription(description);
+                    gig.setTags(mainTag);
+                    gig.setDelivery_time(Integer.parseInt(deliveryTime));
+                    gig.setFreelancer(freelancer);
+                    gig.setCategory(category);
+                    gig.setStatus(status);
+
+                    int id = (int) s.save(gig);
+                    s.beginTransaction().commit();
+                    s.close();
+
+                    String appPath = getServletContext().getRealPath("");
+                    String newPath = appPath.replace("build\\web", "web\\Gig-Images");
+
+                    File f = new File(newPath, String.valueOf(id));
+                    f.mkdir();
+
+                    File file1 = new File(f, "image1.png");
+                    Files.copy(Image1.getInputStream(), file1.toPath(), StandardCopyOption.REPLACE_EXISTING);
+
+                    File file2 = new File(f, "image2.png");
+                    Files.copy(Image2.getInputStream(), file2.toPath(), StandardCopyOption.REPLACE_EXISTING);
+
+                    File file3 = new File(f, "image3.png");
+                    Files.copy(Image3.getInputStream(), file3.toPath(), StandardCopyOption.REPLACE_EXISTING);
+
+                    responseObject.addProperty("status", true);
+
+                } else {
+                    responseObject.addProperty("message", "please Login again");
                 }
+
             }
         }
         

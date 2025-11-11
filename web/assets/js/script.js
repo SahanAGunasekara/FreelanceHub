@@ -473,22 +473,28 @@ async function loadSearch(){
 
 window.addEventListener('load',async function(){
     //console.log("OK");
-    
+    const popup = new Notification();
     const response = await fetch("loadProfileData");
     
     if(response.ok){
         const json = await response.json();
         if(json.status){
-            console.log(json.userPData);
+            //console.log(json.userPData);
             document.getElementById("profImg").src="profile-images\\"+json.userPData.id+"\\image1.png";
             document.getElementById("pImage").src="profile-images\\"+json.userPData.id+"\\image1.png";
             document.getElementById("dName").innerHTML=json.userPData.username;
             document.getElementById("profImg").src="profile-images\\"+json.userPData.id+"\\image1.png";
         }else{
+            popup.warning({
+                message:json.message
+            });
             console.log(json.message);
         }
     }else{
-        console.log("Something went wrong");
+        popup.error({
+                message:"Something went wrong"
+            });
+        //console.log("Something went wrong");
     }
     
 });

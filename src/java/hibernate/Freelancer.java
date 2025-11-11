@@ -24,8 +24,8 @@ public class Freelancer implements Serializable{
     @JoinColumn(name = "users_id")
     private User user;
     
-    @Column(name = "skills",length =50,nullable = false )
-    private String skill;
+    @Column(name = "title",length =50,nullable = false )
+    private String title;
     
     @Column(name = "availability",length = 45,nullable = false)
     private String availability;
@@ -45,6 +45,9 @@ public class Freelancer implements Serializable{
     @ManyToOne
     @JoinColumn(name = "country_id")
     private Country country;
+    
+    @Column(name = "skills",nullable = false)
+    private String skills;
 
     
     public int getId() {
@@ -67,13 +70,13 @@ public class Freelancer implements Serializable{
     }
 
     
-    public String getSkill() {
-        return skill;
+    public String getTitle() {
+        return title;
     }
 
     
-    public void setSkill(String skill) {
-        this.skill = skill;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     
@@ -134,6 +137,16 @@ public class Freelancer implements Serializable{
     
     public void setCountry(Country country) {
         this.country = country;
+    }
+
+    
+    public String getSkills() {
+        return skills;
+    }
+
+    
+    public void setSkills(String skills) {
+        this.skills = skills;
     }
     
 }
