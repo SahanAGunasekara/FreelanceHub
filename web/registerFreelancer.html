@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/registerFreelancer.css">
 </head>
-<body>
+<body onload="loadData();">
     
 
     <header class="page-header">
@@ -28,7 +28,7 @@
                         <div class="d-flex align-items-center"><i class="fas fa-id-card me-2 text-success"></i><span>Professional Details</span></div>
                     </div>
                     <div class="card-body">
-                        <form id="freelancerForm">
+                        
                             <div class="row g-3">
                                 <div class="col-md-8">
                                     <label class="form-label required" for="title">Title</label>
@@ -37,7 +37,7 @@
                                 <div class="col-md-4 d-flex align-items-center">
                                     <div class="form-check form-switch mt-4">
                                         <input class="form-check-input" type="checkbox" id="availability" checked>
-                                        <label class="form-check-label" for="availability">Available for work</label>
+                                        <label class="form-check-label" for="availability">Active</label>
                                     </div>
                                 </div>
                                 <div class="col-12">
@@ -55,13 +55,8 @@
                                 <div class="col-md-6">
                                     <label class="form-label required" for="country">Country</label>
                                     <select id="country" class="form-select" required>
-                                        <option value="" selected disabled>Select country</option>
-                                        <option value="us">United States</option>
-                                        <option value="uk">United Kingdom</option>
-                                        <option value="ca">Canada</option>
-                                        <option value="au">Australia</option>
-                                        <option value="ng">Nigeria</option>
-                                        <option value="in">India</option>
+                                        <option value="0" selected>Select country</option>
+                                        
                                     </select>
                                 </div>
                                 <div class="col-12">
@@ -99,19 +94,19 @@
                                         </button>
                                     </div>
                                     <div class="mt-4">
-                                        <label class="form-label" for="educationPdf">Upload full education (PDF)</label>
-                                        <input type="file" id="educationPdf" class="form-control" accept="application/pdf">
+                                        <label class="form-label" for="portfolioPdf">Upload Portfolio (PDF)</label>
+                                        <input type="file" id="portfolioPdf" class="form-control" accept="application/pdf">
                                         <div class="form-text">Max 5MB. PDF only.</div>
                                     </div>
                                 </div>
                             </div>
 
                             <div class="d-flex justify-content-end mt-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn btn-primary" onclick="registerFreelancer();">
                                     <i class="fas fa-paper-plane me-2"></i>Submit
                                 </button>
                             </div>
-                        </form>
+                        
                     </div>
                 </div>
             </div>

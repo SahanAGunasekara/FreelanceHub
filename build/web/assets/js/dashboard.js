@@ -96,12 +96,14 @@
  
  async function updateUser(){
      //console.log("Ok");
+     const popup = new Notification();
      const userName = document.getElementById("usernameInput").value;
      const email = document.getElementById("email").value;
      const mobile = document.getElementById("phone").value;
      const countryId = document.getElementById("country").value;
      const description = document.getElementById("bio").value;
      const dpImage = document.getElementById("avatarInput").files[0];
+     
      
      const form = new FormData();
      form.append("username",userName);
@@ -120,12 +122,21 @@
         const json = await response.json();
         
         if(json.status){
-            console.log("Successfully Updated");
+            popup.success({
+                message:"uccessfully Updated"
+            });
+            //console.log("Successfully Updated");
         }else{
-            console.log(json.message);
+            popup.warning({
+                message:json.message
+            });
+            //console.log(json.message);
         }
     }else{
-        console.log("error");
+        popup.error({
+                message:"error"
+            });
+        //console.log("error");
     }
      
  }
@@ -222,5 +233,28 @@
     const modal = bootstrap.Modal.getInstance(document.getElementById('changePasswordModal'));
     modal.hide();
     document.getElementById('passwordForm').reset();
+ }
+ 
+ async function freelancerDashboard(){
+     //console.log("redirection OK");
+     const popup = new Notification();
+     const response = await fetch("navigatefreelanceDashboard");
+     
+     if(response.ok){
+         const json = await response.json();
+         if(json.status){
+             window.location="freelancerDashboard.html";
+         }else{
+             //console.log(json.message);
+             popup.error({
+                message:json.message
+            });
+         }
+     }else{
+         //console.log("navigation fail");
+         popup.error({
+                message:"navigation fail"
+            });
+     }
  }
  

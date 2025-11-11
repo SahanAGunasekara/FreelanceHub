@@ -21,6 +21,8 @@
     <mapping class="hibernate.Payment"/>
     <mapping class="hibernate.Admin"/>
     <mapping class="hibernate.UserDetails"/>
+    <mapping class="hibernate.qualification"/>
+    <mapping class="hibernate.qualifyLevel"/>
     
   </session-factory>
 </hibernate-configuration>

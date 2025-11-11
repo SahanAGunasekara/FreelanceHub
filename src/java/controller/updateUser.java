@@ -2,6 +2,7 @@ package controller;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import hibernate.AdvanceDetails;
 import hibernate.Country;
 import hibernate.HibernateUtil;
 import hibernate.User;
@@ -73,17 +74,36 @@ public class updateUser extends HttpServlet {
 
                 s.update(user);
 
-                Country cntry = (Country) s.get(Country.class,Integer.valueOf(countryId));
+                Criteria c1 = s.createCriteria(UserDetails.class);
+                c1.add(Restrictions.eq("user", user));
 
-                UserDetails ud = new UserDetails();
-                ud.setUser(user);
-                ud.setMobile(mobile);
-                ud.setBio(bio);
-                ud.setCountry(cntry);
+                if (c1.list().isEmpty()) {
 
-                s.save(ud);
+                    Country cntry = (Country) s.get(Country.class, Integer.valueOf(countryId));
+
+                    UserDetails ud = new UserDetails();
+                    ud.setUser(user);
+                    ud.setMobile(mobile);
+                    ud.setBio(bio);
+                    ud.setCountry(cntry);
+
+                    s.save(ud);
+
+                }else{
+                    
+                    Country cntry = (Country) s.get(Country.class, Integer.valueOf(countryId));
+                    
+                    UserDetails usd = (UserDetails)c1.uniqueResult();
+                    usd.setUser(user);
+                    usd.setMobile(mobile);
+                    usd.setBio(bio);
+                    usd.setCountry(cntry);
+                    
+                    s.update(usd);
+                
+                }
+
                 s.beginTransaction().commit();
-
                 ses.setAttribute("user", user);
 
                 if (profileImg.getSubmittedFileName() != null) {
@@ -96,7 +116,7 @@ public class updateUser extends HttpServlet {
                     File file1 = new File(f, "image1.png");
                     Files.copy(profileImg.getInputStream(), file1.toPath(), StandardCopyOption.REPLACE_EXISTING);
                 }
-                
+
                 responseObject.addProperty("status", true);
 
             } else {
@@ -104,7 +124,7 @@ public class updateUser extends HttpServlet {
             }
 
         }
-        
+
         Gson gson = new Gson();
         String toJson = gson.toJson(responseObject);
         response.setContentType("application/json");
